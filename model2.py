@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 import sqlite3
 
 # Set up OpenAI API credentials
-openai.api_key = "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"
+openai.api_key = "add here"
 
 # Set up Flask app
 app = Flask(__name__)
