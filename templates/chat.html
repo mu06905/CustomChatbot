@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F7F7F7;
+        }
+        #chat-window {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: scroll;
+        }
+        .message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .question {
+            background-color: #3792cb;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px 20px 20px 0;
+            margin-right: auto;
+            max-width: 70%;
+            text-align: left;
+        }
+        .answer {
+            background-color: #E0E0E0;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 20px 20px 0 20px;
+            margin-left: auto;
+            max-width: 70%;
+            text-align: left;
+        }
+        #question-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        input[type=text] {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        button[type=submit] {
+            padding: 10px 15px;
+            background-color: #3792cb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button[type=submit]:hover {
+            background-color: #26679E;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-window">
+        {% for message in messages %}
+        <div class="message">
+            {% if message['type'] == 'question' %}
+            <div class="question">{{ message['text'] }}</div>
+            {% elif message['type'] == 'answer' %}
+            <div class="answer">{{ message['text'] }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <form id="question-form" method="POST">
+        <input type="text" name="question" placeholder="Ask a question">
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
